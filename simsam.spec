@@ -1,6 +1,6 @@
 %define name	simsam
 %define version	0.1.7
-%define release 3mdk
+%define release %mkrel 3
 
 Name: 	 	%{name}
 Summary: 	Simple sampler for MIDI
