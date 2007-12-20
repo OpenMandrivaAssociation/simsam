@@ -13,7 +13,7 @@ URL:		http://simsam.sourceforge.net/
 License:	GPL
 Group:		Sound
 BuildRequires:	pkgconfig qt3-devel
-BuildRequires:	jackit-devel libsamplerate-devel libsndfile-devel
+BuildRequires:	jackit-devel libsamplerate-devel libsndfile-devel alsa-lib-devel
 
 %description
 Simsam is a simple MIDI sample playback program. You can use it to play drum
