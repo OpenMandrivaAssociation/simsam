@@ -12,6 +12,7 @@ Patch:		simsam-0.1.7-gcc3_4.patch.bz2
 URL:		http://simsam.sourceforge.net/
 License:	GPL
 Group:		Sound
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	pkgconfig qt3-devel
 BuildRequires:	jackit-devel libsamplerate-devel libsndfile-devel alsa-lib-devel
 
