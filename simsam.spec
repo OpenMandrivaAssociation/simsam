@@ -1,6 +1,6 @@
 %define name	simsam
-%define version	0.1.7
-%define release %mkrel 4
+%define version	0.1.8
+%define release %mkrel 1
 
 Name: 	 	%{name}
 Summary: 	Simple sampler for MIDI
@@ -8,9 +8,10 @@ Version: 	%{version}
 Release: 	%{release}
 
 Source:		%{name}-%{version}.tar.bz2
-Patch:		simsam-0.1.7-gcc3_4.patch.bz2
+Patch0:		simsam-0.1.8-fix-gcc4.3.patch
+Patch1:		simsam-0.1.8-fix-str-fmt.patch
 URL:		http://simsam.sourceforge.net/
-License:	GPL
+License:	GPLv2
 Group:		Sound
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	pkgconfig qt3-devel
@@ -22,19 +23,21 @@ samples and loops from a MIDI keyboard or sequencer.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
-%configure2_5x --with-Qt-bin-dir=%_prefix/lib/qt3/bin --with-Qt-lib-dir=%_prefix/lib/qt3/%_lib
+PATH="/usr/lib/qt3/bin:$PATH" ; export PATH ;
+%configure2_5x --with-Qt-bin-dir=%_prefix/lib/qt3/bin --with-Qt-lib-dir=%{_libdir}
 %make
 										
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall
 
 #menu
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+mkdir -p %{buildroot}%{_datadir}/applications/
+cat << EOF > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
 Exec=%{name}
@@ -45,7 +48,7 @@ Categories=Audio;
 EOF
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post
