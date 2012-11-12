@@ -1,0 +1,33 @@
+diff -uNr simsam-0.1.8.ori/lib/patchfile.cpp simsam-0.1.8/lib/patchfile.cpp
+--- simsam-0.1.8.ori/lib/patchfile.cpp	2009-05-17 23:16:09.000000000 +0200
++++ simsam-0.1.8/lib/patchfile.cpp	2009-05-17 23:19:51.000000000 +0200
+@@ -459,7 +459,7 @@
+     return(-1);
+   }
+   
+-  fprintf(fp, doc.toString());
++  fprintf(fp, "%s", (char*) doc.toString().ascii());
+   
+   fclose(fp);
+   
+diff -uNr simsam-0.1.8.ori/lib/sample.cpp simsam-0.1.8/lib/sample.cpp
+--- simsam-0.1.8.ori/lib/sample.cpp	2009-05-17 23:16:09.000000000 +0200
++++ simsam-0.1.8/lib/sample.cpp	2009-05-17 23:18:00.000000000 +0200
+@@ -47,7 +47,7 @@
+   
+   res = sf_readf_float(sf, temp, sfi.frames);
+   if(res < sfi.frames) {
+-    fprintf(stderr, sf_strerror(sf));
++    fprintf(stderr, "%s", sf_strerror(sf));
+     error_message("read error!");
+     return(-1);
+   }
+@@ -79,7 +79,7 @@
+ 
+     res = src_simple(&rsd, SRC_SINC_BEST_QUALITY, sfi.channels);
+     if(res != 0) {
+-      fprintf(stderr, src_strerror(res));
++      fprintf(stderr, "%s", src_strerror(res));
+       error_message("src_simple");
+ 
+       free(resampled);
