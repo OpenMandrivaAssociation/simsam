@@ -10,7 +10,7 @@ Release: 	%{release}
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		simsam-0.1.8-fix-gcc4.3.patch
 Patch1:		simsam-0.1.8-fix-str-fmt.patch
-URL:		http://simsam.sourceforge.net/
+URL:		https://simsam.sourceforge.net/
 License:	GPLv2
 Group:		Sound
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
